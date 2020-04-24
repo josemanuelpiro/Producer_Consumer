@@ -1,2 +1,4 @@
->º¹Ç«jwB¢{.™êÀ²)©•êk¢7œ¶ØZ¶·Ÿ•ç-²Ø^mèZ¾*+¡ûaxúèvç­©Ý
-‰ìºg«š‡^•ªi—(§Ê'rêëzw
+# **Producer and Consumer**
+
+> A simple project that reflects the behavior of the Producer and Consumer model
+> applying concurrence
