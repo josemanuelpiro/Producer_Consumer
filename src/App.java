@@ -11,10 +11,10 @@ public class App {
         Buffer buffer = new Buffer();
 
         //create a consumers and productors objects
-        Productor[] producers = new Productor[NUM_PRODUCTORS];
+        Producer[] producers = new Producer[NUM_PRODUCTORS];
         Object keyP = new Object();
         for (int i = 0; i < NUM_PRODUCTORS; i++) {
-            producers[i] = new Productor(buffer, keyP);
+            producers[i] = new Producer(buffer, keyP);
         }
         Consumer[] consumers = new Consumer[NUM_CONSUMERS];
         Object keyC = new Object();

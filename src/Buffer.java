@@ -29,7 +29,7 @@ public class Buffer {
      */
     public synchronized boolean put(Integer data) {
         //ask again for the case in that Productor finish its work after that the thread take the micro
-        if (!Productor.finishWork()) {
+        if (!Producer.finishWork()) {
             if (aData.size() < MAX_SIZE) {
                 aData.add(data);
                 return true;

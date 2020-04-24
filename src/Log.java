@@ -4,7 +4,7 @@ public class Log implements Runnable {
     //PRIVATES VARIABLES
     //------------------------------------------------------------------------------------------------------------------
     private final long SAMPLE_TIME = 2000;
-    private final String REPORT_FILE_NAME = "Report2.txt";
+    private final String REPORT_FILE_NAME = "Report.txt";
 
     private Consumer[] consumers;
     private Buffer buffer;
@@ -74,10 +74,10 @@ public class Log implements Runnable {
         report += ("Report " + this.reportNumber +" |\n"+
                    "----------" +
                  "\nBuffer size:   " + this.buffer.getSize() +
-                 "\nData produced: " + Productor.getDataProduced() +
-                 "\nData placed:   " + Productor.getDataPlaced() +
+                 "\nData produced: " + Producer.getDataProduced() +
+                 "\nData placed:   " + Producer.getDataPlaced() +
                  "\nData consumed: " + Consumer.getDataConsumed() +
-                 "\nData trashed:  " + Productor.getDataTrashed() +
+                 "\nData trashed:  " + Producer.getDataTrashed() +
                  "\n");
         report += ("----------------------------------\n");
         for (int i = 0; i < this.consumers.length; i++) {

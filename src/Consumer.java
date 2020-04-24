@@ -107,7 +107,7 @@ public class Consumer implements Runnable {
      * @return [boolean] true in case that we finish to consume, false in other case
      * @apiNote return status work
      */
-    public static synchronized boolean finishWork() {
+    public static boolean finishWork() {
         return Consumer.dataConsumed == FINAL_NUMBER;
     }
 

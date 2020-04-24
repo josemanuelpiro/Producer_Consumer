@@ -1,7 +1,6 @@
 import java.util.Random;
-import java.util.concurrent.locks.Lock;
 
-public class Productor implements Runnable {
+public class Producer implements Runnable {
     //CLASS VARIABLES
     //------------------------------------------------------------------------------------------------------------------
     private static int lostData = 0;
@@ -24,7 +23,7 @@ public class Productor implements Runnable {
      * @param buffer [Buffer] buffer of this producer
      * @apiNote Class constructor
      */
-    public Productor(Buffer buffer, Object key) {
+    public Producer(Buffer buffer, Object key) {
         this.buffer = buffer;
         this.key = key;
 
@@ -39,7 +38,7 @@ public class Productor implements Runnable {
     @Override
     public void run() {
         //System.out.printf("i am alive");
-        while (!Productor.finishWork()) {
+        while (!Producer.finishWork()) {
             this.produce();
         }
     }
@@ -64,15 +63,15 @@ public class Productor implements Runnable {
         int data = randomData.nextInt(MAX_RANDOM_VALUE);
 
         synchronized (key) {
-            if (!Productor.finishWork()) {
+            if (!Producer.finishWork()) {
                 //increase data produced
-                Productor.dataProducedIncreases();
+                Producer.dataProducedIncreases();
 
                 //put data
                 if (!this.buffer.put(data)) {
-                    Productor.dataTrashedIncreases();
+                    Producer.dataTrashedIncreases();
                 } else
-                    Productor.dataPlacedIncreases();
+                    Producer.dataPlacedIncreases();
             }
         }
 
@@ -86,7 +85,7 @@ public class Productor implements Runnable {
      * @apiNote return a dataProduced number
      */
     public static synchronized int getDataProduced() {
-        return Productor.dataProduced;
+        return Producer.dataProduced;
     }
 
     /**
@@ -94,7 +93,7 @@ public class Productor implements Runnable {
      * @apiNote return a dataPlaced number
      */
     public static synchronized int getDataPlaced() {
-        return Productor.dataPlaced;
+        return Producer.dataPlaced;
     }
 
     /**
@@ -102,36 +101,36 @@ public class Productor implements Runnable {
      * @apiNote return a number of lost data
      */
     public static synchronized int getDataTrashed() {
-        return Productor.lostData;
+        return Producer.lostData;
     }
 
     /**
      * @apiNote increases the counter by 1
      */
     private static synchronized void dataProducedIncreases() {
-        Productor.dataProduced++;
+        Producer.dataProduced++;
     }
 
     /**
      * @apiNote increases the counter by 1
      */
     private static synchronized void dataPlacedIncreases() {
-        Productor.dataPlaced++;
+        Producer.dataPlaced++;
     }
 
     /**
      * @apiNote increases the counter by 1
      */
     private static synchronized void dataTrashedIncreases() {
-        Productor.lostData++;
+        Producer.lostData++;
     }
 
     /**
      * @return [boolean] true in case that we finish to produce, false in other case
      * @apiNote return status work
      */
-    public static synchronized boolean finishWork() {
-        return Productor.dataPlaced == FINAL_NUMBER;
+    public static  boolean finishWork() {
+        return Producer.dataPlaced == FINAL_NUMBER;
     }
 
 }
