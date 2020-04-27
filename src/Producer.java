@@ -7,7 +7,7 @@ public class Producer implements Runnable {
     private static int dataProduced = 0;
     private static int dataPlaced = 0;
     private static final int FINAL_NUMBER = 1000;
-    private static final int MAX_RANDOM_TIME = 1200;
+    private static final int MAX_RANDOM_TIME = 1400;
     private static final int MAX_RANDOM_VALUE = 100;
 
 
@@ -26,7 +26,6 @@ public class Producer implements Runnable {
     public Producer(Buffer buffer, Object key) {
         this.buffer = buffer;
         this.key = key;
-
     }
 
     //PUBLIC METHODS

@@ -2,7 +2,7 @@ public class App {
     //PRIVATES VARIABLES
     //------------------------------------------------------------------------------------------------------------------
     private final static int NUM_CONSUMERS = 10;
-    private final static int NUM_PRODUCTORS = 10;
+    private final static int NUM_PRODUCERS = 12;
 
     //CONSTRUCTOR
     //------------------------------------------------------------------------------------------------------------------
@@ -11,9 +11,9 @@ public class App {
         Buffer buffer = new Buffer();
 
         //create a consumers and productors objects
-        Producer[] producers = new Producer[NUM_PRODUCTORS];
+        Producer[] producers = new Producer[NUM_PRODUCERS];
         Object keyP = new Object();
-        for (int i = 0; i < NUM_PRODUCTORS; i++) {
+        for (int i = 0; i < NUM_PRODUCERS; i++) {
             producers[i] = new Producer(buffer, keyP);
         }
         Consumer[] consumers = new Consumer[NUM_CONSUMERS];
@@ -26,8 +26,8 @@ public class App {
         Log log = new Log(consumers, buffer);
 
         //create a threads and assign its productors objects
-        Thread threadsP[] = new Thread[NUM_PRODUCTORS];
-        for (int i = 0; i < NUM_PRODUCTORS; i++) {
+        Thread threadsP[] = new Thread[NUM_PRODUCERS];
+        for (int i = 0; i < NUM_PRODUCERS; i++) {
             threadsP[i] = new Thread(producers[i]);
         }
 
@@ -47,7 +47,7 @@ public class App {
         for (int i = 0; i < NUM_CONSUMERS; i++) {
             threadsC[i].start();
         }
-        for (int i = 0; i < NUM_PRODUCTORS; i++) {
+        for (int i = 0; i < NUM_PRODUCERS; i++) {
             threadsP[i].start();
         }
         threadL.setPriority(Thread.MAX_PRIORITY);
